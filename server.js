@@ -31,7 +31,7 @@ app.set("view engine", "handlebars");
 //sets up Express to handle url encoding and parse data
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.static('public'));
+app.use(express.static('app/public'));
 //create routes for the api page and html page
 
 require("./app/routing/apiRoutes")(app);

@@ -5,15 +5,13 @@
   <meta charset="UTF-8">
   <title>Buddy Bonder</title>
 
-  <!-- Latest compiled and minified CSS & JS -->
+  
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
-  <!-- Font Awesome Glyphicons -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 
-  <!-- Chosen -->
+  <!-- Chosen JS-->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
 
@@ -153,7 +151,7 @@
     <br>
     <br>
 
-    <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit"><i class="fa fa-check-circle" aria-hidden="true"></i>
+    <button type="submit" class="btn btn-primary btn-lg btn-block" id="submit">
      Submit</button>
 
     <hr>
@@ -198,7 +196,7 @@
         disable_search_threshold: 10
       },
       ".chosen-select-no-results": {
-        no_results_text: "Oops, nothing found!"
+        no_results_text: "Sorry. You're just one of a kind!"
       },
       ".chosen-select-width": {
         width: "95%"
@@ -248,12 +246,21 @@
             $("#q8").val(),
             $("#q9").val(),
             $("#q10").val()
-          ]
+          ],
+          compositeScore: 0,
+          addScore: () => {}
+          
+          // function(){
+          //   for (var i = 0; i < this.scores.length; i++){
+          //      compositeScore += scores[i];
+          //      console.log("Composite Score: ", compositeScore);
+          //   };
+          // }
         };
 
         // AJAX post the data to the friends API.
         $.post("/api/buddy_list", userData, function(data) {
-
+          console.log('User data:', userData, "data:", data);
           // Grab the result from the AJAX post so that the best match's name and photo are displayed.
           $("#match-name").text(data.name);
           $("#match-img").attr("src", data.photo);
